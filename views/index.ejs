@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./partials/header %>
+  </head>
+  <body>
+    <div class="section">
+    <div class="container flex-container" style="width: 95%;">
+      <div class="cards">
+      <% articles.forEach(function(article){ %>
+          <div class="card">
+              <a href="/articles/<%= article.id %>"><img src="<%= article.cover %>" /></a>
+              <p class="subtitle"><%= article.title %><p>
+          </div>
+        <% }); %>
+    </div>
+  </div>
+  </div>
+  </body>
+  <% include ./partials/footer %>
+</html>

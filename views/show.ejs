@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./partials/header %>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h2 class="title">
+          <%= article.title %>
+        </h2>
+        <img class='article-photo' src="<%= article.cover %>" />
+
+<!-- The code below parses the JSON entry for an article (retrieved from the database) into seperate sections determined by their type (e.g. h2, plaintext, pull_quote). Best practices hold that the view should contain very little logic; clearly, my view has more logic than it should.     -->
+
+          <% article.body.forEach(function(block){ %>
+            <% if(block.type === 'h2'){ %>
+              <br />
+              <h2 class="title" style="margin-top: 5px;">
+                <%= block.body %>
+              </h2>
+            <% } else if(block.type === 'plaintext'){ %>
+              <p>
+                <%= block.body %>
+              </p>
+              <br />
+            <% } else if(block.type === 'pull_quote'){ %>
+              <div class="content">
+              <aside class='pullquote'>
+                <blockquote>
+                  <p>
+                    <%= block.body %>
+                  </p>
+                </blockquote>
+              </aside>
+            </div>
+            <% } %>
+          <% }) %>
+      </div>
+    </section>
+  </body>
+  <% include ./partials/footer %>
+</html>
